@@ -1,0 +1,9 @@
+# New Product
+POST http://localhost:5500/api/products/createProduct
+content-Type: application/json
+
+{
+    "title": "Iphone",
+    "price": 2000,
+    "description": "expensive"
+}
