@@ -14,4 +14,25 @@ const createProduct = async (req, res) => {
     }
 };
 
-module.exports = {createProduct};
+const get = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await Product.findById(id)
+        res.status(200).json(product)
+    } catch(err) {
+        console.error(err)
+        res.json.status(500).json({error: `Internal error: ${err}`})
+    }
+}
+
+const getAll = async (req, res) => {
+    try {
+        const products = await Product.find({deleted_at: null})
+        res.status(200).json(products)
+    } catch(err) {
+        console.error(err)
+        res.json.status(500).json({error: `Internal error: ${err}`})
+    }
+};
+
+module.exports = {createProduct, get, getAll};

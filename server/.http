@@ -7,3 +7,6 @@ content-Type: application/json
     "price": 2000,
     "description": "expensive"
 }
+
+# Get all products
+GET http://localhost:5500/api/products/getAll
