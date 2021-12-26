@@ -8,5 +8,13 @@ content-Type: application/json
     "description": "expensive"
 }
 
-# Get all products
-GET http://localhost:5500/api/products/getAll
+
+### Edit product
+POST http://localhost:5500/api/products/61c26d263220c060fce955e6/edit
+Content-Type: application/json
+
+{
+    "title": "Lenovo",
+    "price": 2000,
+    "description": "Legion 5 Pro"
+}

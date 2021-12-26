@@ -35,4 +35,33 @@ const getAll = async (req, res) => {
     }
 };
 
-module.exports = {createProduct, get, getAll};
+const edit = async (req, res) => {
+    try {
+        const {title,price, description} = req.body;
+        const id = req.params.id;
+        const product = await Product.findById(id);
+        product.title = title;
+        product.price = price;
+        product.description = description;
+        await product.save();
+        res.status(201).json(product)
+    } catch(err) {
+        console.error(err)
+        res.status(500).json({error: `Internal error: ${err}`})
+    }
+}
+
+const remove = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await Product.findById(id);
+        product.deleted_at = new Date();
+        await product.save();
+        res.status(201).json(product)
+    } catch(err) {
+        console.error(err)
+        res.status(500).json({error: `Internal error: ${err}`})
+    }
+}
+
+module.exports = {createProduct, get, getAll, edit, remove};
